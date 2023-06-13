@@ -8,6 +8,7 @@ declare(strict_types=1);
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\IndexController as AdminController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\Admin\NewsController as AdminNewsController;
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 
@@ -33,14 +34,7 @@ Route::get('/', function () {
 //});
 
 // Admin
-//Route::group(['prefix' => 'admin', 'as' => 'admin.'], static function() {
-//    Route::get('/', AdminController::class)
-//        ->name('index');
-//    Route::resource('/categories', AdminCategoryController::class);
-//    Route::resource('/news', AdminNewsController::class);
-//});
-//group(array $attributes, \Closure|array|string $routes)
-//void resources(array $resources, array $options = [])
+
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], static function() {
     Route::get('/', AdminController::class)
         ->name('index');
@@ -57,3 +51,8 @@ Route::get('/news', [NewsController::class, 'index'])
 Route::get('/news/{id}', [NewsController::class, 'show'])
     ->where('id', '\d+')
     ->name('news.show');
+
+
+// Create order
+
+Route::resource('/order', OrderController::class);
