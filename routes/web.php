@@ -56,3 +56,9 @@ Route::get('/news/{id}', [NewsController::class, 'show'])
 // Create order
 
 Route::resource('/order', OrderController::class);
+
+
+
+Route::match(["POST", 'GET', 'PUT'], '/test', function(\Illuminate\Http\Request $request) {
+    return (int) $request->isMethod('GET');
+});

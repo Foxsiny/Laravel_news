@@ -11,5 +11,8 @@
     <x-alert type="info" message="Some message"></x-alert>
     <x-alert type="danger" message="Some message"></x-alert>
     <x-alert type="alert" message="Some message"></x-alert>
+
+
+
 @endsection
 
