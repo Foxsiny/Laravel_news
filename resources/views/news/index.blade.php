@@ -22,7 +22,7 @@
 {{--                                <strong><a--}}
 {{--                                        href="{{ route('news.show', ['id' => $newsItem['id']]) }}">{{ $newsItem['title'] }}</a></strong>--}}
 {{--                            </p>--}}
-                            <p><strong><a href="{{ route('news.show', ['id' => $newsItem->id]) }}">{{ $newsItem->title }}</a></strong></p>
+                            <p><strong><a href="{{ route('news.show', ['news' => $newsItem->id]) }}">{{ $newsItem->title }}</a></strong></p>
                             <p class="card-text">
 {{--                                {!! $newsItem['description'] !!}--}}
                                 {!! $newsItem->description !!}
@@ -31,7 +31,7 @@
                                 <div class="btn-group">
 {{--                                    <a href="{{ route('news.show', ['id' => $newsItem['id']]) }}" type="button"--}}
 {{--                                       class="btn btn-sm btn-outline-secondary">Подробнее</a>--}}
-                                    <a href="{{ route('news.show', ['id' => $newsItem->id]) }}" type="button" class="btn btn-sm btn-outline-secondary">Подробнее</a>
+                                    <a href="{{ route('news.show', ['news' => $newsItem->id]) }}" type="button" class="btn btn-sm btn-outline-secondary">Подробнее</a>
                                 </div>
 {{--                                <small class="text-muted">{{ $newsItem['author'] }} ({{ $newsItem['created_at'] }}--}}
 {{--                                    )</small>--}}

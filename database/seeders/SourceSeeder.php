@@ -19,7 +19,10 @@ class SourceSeeder extends Seeder
         $response = [];
         for ($i=0; $i < 10; $i++) {
             $response[] = [
-                'id' =>  $i,
+                'title' => 'Source# ' . $i,
+                'description' => fake()->text(100),
+                'created_at' => now(),
+                'updated_at' => now(),
             ];
         }
 

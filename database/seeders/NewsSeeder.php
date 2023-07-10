@@ -32,6 +32,8 @@ class NewsSeeder extends Seeder
                 'description' => fake()->text(100),
                 'created_at' => now(),
                 'updated_at' => now(),
+
+
             ];
         }
 

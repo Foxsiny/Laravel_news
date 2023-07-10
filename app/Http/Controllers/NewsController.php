@@ -5,27 +5,22 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+
 use App\Models\News;
+use App\Queries\NewsQueryBuilder;
 use Illuminate\Contracts\View\View;
 
 final class NewsController extends Controller
 {
-    public function index(): View
+    public function index(NewsQueryBuilder $newsQueryBuilder): View
     {
-//        dd($this->getNews());
-        //$news = $this->getNews();
-        $model = app(News::class);
-        //dd($model->getNews());
-        //return view('news.index', ['news' => $news]);
-        return view('news.index', ['news' => $model->getNews()]);
+        return view('news.index', ['news' => $newsQueryBuilder->getActiveNews()]);
     }
 
-    public function show(int $id): View
+    public function show(News $news): View
     {
-        //return view('news.show', ['newsItem' => $this->getNews($id)]);
-        $model = app(News::class);
 
-        return view('news.show', ['newsItem' => $model->getNewsById($id)]);
+       return view('news.show', ['newsItem' => $news]);
 
     }
 }
