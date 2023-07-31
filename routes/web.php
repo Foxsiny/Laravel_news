@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 
 
+
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\Admin\ParserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\IndexController as AdminController;
@@ -12,7 +14,7 @@ use App\Http\Controllers\NewsController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\Admin\NewsController as AdminNewsController;
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
-
+use App\Http\Controllers\SocialProvidersController;
 
 
 /*
@@ -43,6 +45,8 @@ Route::group(['middleware' => 'auth'], static function () {
     ], static function () {
         Route::get('/', AdminController::class)
             ->name('index');
+        Route::get('/parser', ParserController::class)
+            ->name('parser');
         Route::resource('/categories', AdminCategoryController::class);
         Route::resource('/news', AdminNewsController::class);
     });
@@ -53,6 +57,18 @@ Route::group(['middleware' => 'auth'], static function () {
 
 
 // Guest's routes
+Route::group(['middleware' => 'guest'], function () {
+    Route::get('{driver}/redirect', [SocialProvidersController::class, 'redirect'])
+        ->where('driver', '\w+')
+        ->name('social-providers.redirect');
+
+    Route::get('{driver}/callback', [SocialProvidersController::class, 'callback'])
+        ->where('driver', '\w+')
+        ->name('social-providers.callback');
+});
+
+
+
 
 Route::get('/news', [NewsController::class, 'index'])
     ->name('news.index');
